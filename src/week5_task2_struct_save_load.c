@@ -1,12 +1,3 @@
-// week5_task2_struct_save_load.c
-// Name: ________  Surname: ________  Student ID: ________
-//
-// Task 2: Save and load structured records from a file
-// Week 5 – Files & Modular Programming
-// TODO: Complete the function implementations and the file handling logic.
-//
-// Build: make lab5   Run: ./bin/week5_task2_struct_save_load
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,13 +24,23 @@ int main(void) {
     const char *filename = "student.txt";
 
     printf("Saving student to file...\n");
-    // TODO: Call save_student(&s1, filename). If it fails, print an error and return EXIT_FAILURE.
+
+    if (save_student(&s1, filename) == -1) {
+        printf("Error saving student.\n");
+        return EXIT_FAILURE;
+    }
 
     printf("Loading student from file...\n");
-    // TODO: Call load_student(filename, &loaded). If it fails, print an error and return EXIT_FAILURE.
+    
+    if (load_student(filename, &loaded) == -1) {
+        printf("Error loading student.\n");
+        return EXIT_FAILURE;
+    }
 
-    // TODO: Print the loaded data in exactly this format:
-    //       printf("Loaded student: %s, %d, GPA %.2f\n", ...);
+    printf("Loaded student: %s, %d, GPA %.2f\n",
+           loaded.name, loaded.age, loaded.gpa);
+
+    return EXIT_SUCCESS;
 
     (void)filename; (void)loaded;  // remove this line once you use these variables
     return EXIT_SUCCESS;
